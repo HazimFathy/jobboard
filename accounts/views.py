@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from .forms import signupform , profileform , UserForm
-from django.contrib.auth import authenticate , login
+from django.contrib.auth import authenticate , login , logout
 from django.urls import reverse
 from .models import Profile
 from django.contrib.auth.models import User
@@ -13,8 +13,8 @@ def signup(request):
         form=signupform(request.POST)
         if form.is_valid():
             form.save()
-            username= form.cleanned_data['username']
-            password= form.cleanned_data['password1']
+            username= form.cleanned_data.get('username')
+            password= form.cleanned_data.get('password1')
             user = authenticate(username=username,password=password)
             login(request,user)
             return redirect(reverse('jobs:job_list'))

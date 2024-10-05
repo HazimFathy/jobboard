@@ -18,10 +18,10 @@
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <a href="{% url 'accounts:profile' %}"  class="boxed-btn3 w-100" > log in </a>
+    <input class="boxed-btn3 w-100" type="submit" value="login">
     <input type="hidden" name="next" value="{{ next }}">
   </form>
-
+  
   {# Assumes you set up the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 

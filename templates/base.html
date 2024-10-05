@@ -67,6 +67,10 @@
                                         <div class="phone_num d-none d-xl-block">
                                             <a href="{% url 'accounts:profile' %}">profile</a>
                                         </div> 
+                                        <form method="post" action="{% url 'logout' %}">
+                                            {% csrf_token %}
+                                            <button class="boxed-btn3 w-10 " type="submit">logout</button>
+                                        </form>
                                     {% else %}
                                     <div class="phone_num d-none d-xl-block">
                                         <a href="{% url 'login' %}">Log in</a>
@@ -75,9 +79,12 @@
                                         <a href="{% url 'accounts:signup' %}">sign up</a>
                                     </div>
                                     {% endif %}
+
+                                    {% if user.is_authenticated %}
                                     <div class="d-none d-lg-block">
                                         <a class="boxed-btn3" href="{% url 'job:add_job'%}">Post a Job</a>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="col-12">
